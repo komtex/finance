@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            {% for item in portfolio %}
+            <tr>
+                <td>{{ item.symbol }}</td>
+                <td>{{ item.number_of_shares }}</td>
+                <td>{{ item.price | usd }}</td>
+                <td>{{ (item.price * item.number_of_shares) | usd }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Remaining Balance:</td>
+                <td>{{ available_cash | usd}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
